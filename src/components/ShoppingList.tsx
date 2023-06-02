@@ -1,8 +1,14 @@
 import { prisma } from "@/db";
+import Item from "./Item";
 
-const getList = async () => {
+async function getList() {
+  "use server";
   return await prisma.item.findMany();
-};
+}
+
+async function toggleComplete(id: String, checked: Boolean) {
+  "use server";
+}
 
 const ShoppingList = () => {
   const list = getList();
@@ -11,16 +17,7 @@ const ShoppingList = () => {
     <ul>
       {list.then((data) =>
         data.map((item) => (
-          <li className="flex gap-1 items-center" key={item.id}>
-            <input
-              id={item.id}
-              type="checkbox"
-              className="cursor-pointer peer"
-            />
-            <label htmlFor={item.id} className=" peer-checked:line-through">
-              {item.title}
-            </label>
-          </li>
+          <Item {...item} key={item.id} handleChange={toggleComplete} />
         ))
       )}
     </ul>

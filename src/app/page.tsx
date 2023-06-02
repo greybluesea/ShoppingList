@@ -8,9 +8,9 @@ const Home = () => {
         <h1 className="text-2xl">Shopping List</h1>
         <Link
           className="border border-slate-300 text-slate-300 px-2 py-1 rounded-md hover:bg-slate-700 focus-within:bg-slate-700 outline-none "
-          href="/new"
+          href="/newitem"
         >
-          New
+          New Item
         </Link>
       </header>
       <ShoppingList />

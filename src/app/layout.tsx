@@ -18,7 +18,7 @@ export default function RootLayout({
       <body
         className={
           inter.className +
-          " bg-slate-800 text-slate-100 container max-w-lg mx-auto p-4 flex flex-col justify-center min-h-screen"
+          " bg-slate-800 text-slate-100 container max-w-sm mx-auto p-4 flex flex-col justify-center min-h-screen"
         }
         style={{ marginTop: "-12svh" }}
       >
