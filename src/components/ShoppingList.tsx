@@ -18,7 +18,7 @@ async function deleteItem(id: string) {
 }
 
 const ShoppingList = () => {
-  const list = getList();
+  const list: Promise<Item[]> = getList();
 
   return (
     <ul>
