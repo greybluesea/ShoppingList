@@ -8,6 +8,7 @@ async function addNew(data: FormData) {
   const title = data.get("title");
   if (typeof title !== "string" || title.length === 0) {
     throw new Error("invalid title");
+    redirect("/");
   }
 
   await prisma.item.create({ data: { title } });
@@ -39,6 +40,7 @@ const New = () => {
           type="text"
           name="title"
           className="border border-slate-400 bg-transparent rounded px-2 py-1 outline-none focus-within:border-slate-300"
+          autoFocus
         ></input>
       </form>
     </>

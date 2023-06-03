@@ -23,6 +23,15 @@ export default function RootLayout({
         style={{ marginTop: "-12svh" }}
       >
         {children}
+        <footer>
+          <ul className="fixed bottom-20 left-0 right-0 flex flex-col justify-center items-center ">
+            <li>NEXT.js (Server Actions)</li>
+            <li>Prisma + SQLite</li>
+            <li>
+              learned from Kyle(Web Dev Simplified), powered by greybluesea
+            </li>
+          </ul>
+        </footer>
       </body>
     </html>
   );

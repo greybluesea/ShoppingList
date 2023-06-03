@@ -1,12 +1,15 @@
 "use client";
 
+import { useState } from "react";
+
 interface ItemProps {
   id: string;
   title: string;
   complete: boolean;
   createdAt: Date;
   updatedAt: Date;
-  handleChange: (id: string, complete: boolean) => void;
+  handleCheck: (id: string, complete: boolean) => void;
+  handleDelete: (id: string) => void;
 }
 
 const Item = ({
@@ -15,23 +18,41 @@ const Item = ({
   complete,
   createdAt,
   updatedAt,
-  handleChange,
+  handleCheck,
+  handleDelete,
 }: ItemProps) => {
+  const [invisible, setInvisible] = useState(false);
   return (
-    <li className="flex gap-1 items-center">
-      <input
-        id={id}
-        type="checkbox"
-        className="cursor-pointer peer"
-        defaultChecked={complete}
-        onChange={(e) => handleChange(id, e.target.checked)}
-      />
-      <label
-        htmlFor={id}
-        className=" peer-checked:line-through peer-checked:text-slate-500"
+    <li
+      className={
+        " flex gap-1 pb-1 items-center justify-between " +
+        (invisible && "hidden")
+      }
+    >
+      <div className="flex gap-1 items-center text-lg">
+        <input
+          id={id}
+          type="checkbox"
+          className="cursor-pointer peer"
+          defaultChecked={complete}
+          onChange={(e) => handleCheck(id, e.target.checked)}
+        />
+        <label
+          htmlFor={id}
+          className=" peer-checked:line-through peer-checked:text-slate-500"
+        >
+          {title}
+        </label>
+      </div>
+      <button
+        className="text-sm border border-slate-300 text-slate-300 px-2  rounded-md hover:bg-slate-700 focus-within:bg-slate-700 outline-none mb-0.5"
+        onClick={() => {
+          handleDelete(id);
+          setInvisible(true);
+        }}
       >
-        {title}
-      </label>
+        Delete
+      </button>
     </li>
   );
 };
