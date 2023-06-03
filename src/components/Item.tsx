@@ -45,7 +45,7 @@ const Item = ({
         </label>
       </div>
       <button
-        className="text-sm border border-slate-300 text-slate-300 px-2  rounded-md hover:bg-slate-700 focus-within:bg-slate-700 outline-none mb-0.5"
+        className="text-sm btn-or-link mb-0.5"
         onClick={() => {
           handleDelete(id);
           setInvisible(true);
