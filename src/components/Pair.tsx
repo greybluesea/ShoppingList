@@ -1,10 +1,11 @@
 "use client";
 
-import React from "react";
+import { useRouter } from "next/navigation";
 
 type Props = Item & { handleCheck: (id: string, complete: boolean) => void };
 
 const Pair = ({ id, title, complete, handleCheck }: Props) => {
+  const router = useRouter();
   return (
     <div className="flex gap-1 items-center text-lg">
       <input
@@ -14,6 +15,7 @@ const Pair = ({ id, title, complete, handleCheck }: Props) => {
         defaultChecked={complete}
         onChange={(e) => {
           handleCheck(id, e.target.checked);
+          router.refresh();
         }}
         /* formAction={async () => {
                   "use server";
