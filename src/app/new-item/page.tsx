@@ -7,7 +7,8 @@ async function addNew(data: FormData) {
 
   const title = data.get("title");
   if (typeof title !== "string" || title.length === 0) {
-    throw new Error("invalid title");
+    /* throw new Error("invalid title"); */
+    redirect("/");
   }
 
   await prisma.item.create({ data: { title } });
@@ -21,11 +22,11 @@ const New = () => {
         <header className="flex justify-between items-center mb-2 ">
           <h1 className="text-2xl  ">New Item</h1>
           <div className="flex gap-2 justify-end">
-            <Link href="/" className="btn-or-link">
+            <Link href="/" className="btn-or-link w-20 text-center">
               Cancel
             </Link>
-            <button type="submit" className="btn-or-link">
-              Add New
+            <button type="submit" className="btn-or-link w-20">
+              Enter
             </button>
           </div>
         </header>

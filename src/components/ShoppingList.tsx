@@ -2,13 +2,14 @@ import { redirect } from "next/dist/server/api-utils";
 import { revalidatePath } from "next/cache";
 import { deleteItem, getList, toggleComplete } from "@/utils";
 import Pair from "./Pair";
+import Item from "./Item";
 
 const ShoppingList = async () => {
   const list: Promise<Item[]> = getList();
   const listData = await list;
 
   return (
-    /* <ul>
+    <ul>
       {list.then((data) =>
         data.map((item) => (
           <Item
@@ -19,8 +20,8 @@ const ShoppingList = async () => {
           />
         ))
       )}
-    </ul> */
-    <ul>
+    </ul>
+    /* <ul>
       {listData.map((item) => (
         <form>
           <li
@@ -41,7 +42,7 @@ const ShoppingList = async () => {
           </li>
         </form>
       ))}
-    </ul>
+    </ul> */
   );
 };
 

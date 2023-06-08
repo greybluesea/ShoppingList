@@ -1,16 +1,12 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+/* import { experimental_useOptimistic as useOptimistic } from "react"; */
 
-interface ItemProps {
-  id: string;
-  title: string;
-  complete: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+type ItemProps = Item & {
   handleCheck: (id: string, complete: boolean) => void;
   handleDelete: (id: string) => void;
-}
+};
 
 const Item = ({
   id,
@@ -22,6 +18,19 @@ const Item = ({
   handleDelete,
 }: ItemProps) => {
   const [invisible, setInvisible] = useState(false);
+  const router = useRouter();
+  /* const [checkStatus, setCheckStatus] = useState(complete); */
+  /* const [optimisticItem, addOptimisticItem] = useOptimistic(
+    {
+      id,
+      title,
+      complete,
+      createdAt,
+      updatedAt,
+    },
+    (state: Item, completed: boolean) => ({ ...state, completed })
+  ); */
+
   return (
     <li
       className={
@@ -34,8 +43,15 @@ const Item = ({
           id={id}
           type="checkbox"
           className="cursor-pointer peer"
+          /* checked={checkStatus} */
           defaultChecked={complete}
-          onChange={(e) => handleCheck(id, e.target.checked)}
+          /* checked={optimisticItem.complete} */
+          onChange={(e) => {
+            /*  addOptimisticItem(!complete); */
+            handleCheck(id, e.target.checked);
+            router.refresh();
+            /* setCheckStatus(e.target.checked); */
+          }}
         />
         <label
           htmlFor={id}
