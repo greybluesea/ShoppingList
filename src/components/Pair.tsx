@@ -17,10 +17,6 @@ const Pair = ({ id, title, complete, handleCheck }: Props) => {
           handleCheck(id, e.target.checked);
           router.refresh();
         }}
-        /* formAction={async () => {
-                  "use server";
-                  await toggleComplete(item.id, item.complete);
-                }} */
       />
       <label
         htmlFor={id}
