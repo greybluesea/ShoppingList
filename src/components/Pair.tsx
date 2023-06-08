@@ -1,10 +1,13 @@
 "use client";
 import { experimental_useFormStatus as useFormStatus } from "react-dom";
-import { useRouter } from "next/navigation";
-type Props = Item & { handleCheck: (id: string, complete: boolean) => void };
+/* import { useRouter } from "next/navigation"; */
+type Props = Item & {
+  handleCheck: (id: string, complete: boolean) => void;
+  /* revalidate: (path: string) => void; */
+};
 
-const Pair = ({ id, title, complete, handleCheck }: Props) => {
-  const router = useRouter();
+const Pair = ({ id, title, complete, handleCheck /* revalidate */ }: Props) => {
+  /*  const router = useRouter(); */
   const { pending } = useFormStatus();
 
   return (
@@ -16,7 +19,9 @@ const Pair = ({ id, title, complete, handleCheck }: Props) => {
         defaultChecked={complete}
         onChange={(e) => {
           handleCheck(id, e.target.checked);
-          router.refresh();
+          /* router.refresh(); */
+
+          /*  revalidate("/"); */
         }}
         disabled={pending}
       />

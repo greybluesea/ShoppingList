@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+/* import { useRouter } from "next/navigation"; */
 import { useState } from "react";
 /* import { experimental_useOptimistic as useOptimistic } from "react"; */
 
@@ -18,7 +18,7 @@ const Item = ({
   handleDelete,
 }: ItemProps) => {
   const [invisible, setInvisible] = useState(false);
-  const router = useRouter();
+  /* const router = useRouter(); */
   /* const [checkStatus, setCheckStatus] = useState(complete); */
   /* const [optimisticItem, addOptimisticItem] = useOptimistic(
     {
@@ -49,7 +49,7 @@ const Item = ({
           onChange={(e) => {
             /*  addOptimisticItem(!complete); */
             handleCheck(id, e.target.checked);
-            router.refresh();
+            /*  router.refresh(); */
             /* setCheckStatus(e.target.checked); */
           }}
         />

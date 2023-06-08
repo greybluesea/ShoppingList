@@ -1,15 +1,15 @@
 import { redirect } from "next/dist/server/api-utils";
 import { revalidatePath } from "next/cache";
-import { deleteItem, getList, toggleComplete } from "@/utils";
+import { deleteItem, getList, revalid, toggleComplete } from "@/utils";
 import Pair from "./Pair";
-import Item from "./unused/Item";
+import Item from "./Item";
 
 const ShoppingList = async () => {
   const list: Promise<Item[]> = getList();
   const listData = await list;
 
   return (
-    /* <ul>
+    <ul>
       {list.then((data) =>
         data.map((item) => (
           <Item
@@ -20,15 +20,18 @@ const ShoppingList = async () => {
           />
         ))
       )}
-    </ul> */
-    <ul>
+    </ul>
+    /* <ul>
       {listData.map((item) => (
         <form>
           <li
             className={" flex gap-1 pb-1 items-center justify-between "}
             key={item.id}
           >
-            <Pair {...item} handleCheck={toggleComplete} />
+            <Pair
+              {...item}
+              handleCheck={toggleComplete} // revalidate={revalid} 
+            />
             <button
               className="text-sm btn-or-link mb-0.5"
               formAction={async () => {
@@ -42,7 +45,7 @@ const ShoppingList = async () => {
           </li>
         </form>
       ))}
-    </ul>
+    </ul> */
   );
 };
 

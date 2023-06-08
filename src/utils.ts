@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { prisma } from "./db";
 
 export async function getList() {
@@ -12,4 +13,8 @@ export async function toggleComplete(id: string, checked: boolean) {
 
 export async function deleteItem(id: string) {
   await prisma.item.delete({ where: { id } });
+}
+
+export async function revalid(path: string) {
+  await revalidatePath(path);
 }

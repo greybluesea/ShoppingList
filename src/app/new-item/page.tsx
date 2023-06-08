@@ -22,9 +22,9 @@ const New = () => {
         <header className="flex justify-between items-center mb-2 ">
           <h1 className="text-2xl  ">New Item</h1>
           <div className="flex gap-2 justify-end">
-            <Link href="/" className="btn-or-link w-20 text-center">
+            {/* <Link href="/" className="btn-or-link w-20 text-center">
               Cancel
-            </Link>
+            </Link> */}
             <button type="submit" className="btn-or-link w-20">
               Enter
             </button>
