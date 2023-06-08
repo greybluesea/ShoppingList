@@ -8,7 +8,6 @@ async function addNew(data: FormData) {
   const title = data.get("title");
   if (typeof title !== "string" || title.length === 0) {
     throw new Error("invalid title");
-    redirect("/");
   }
 
   await prisma.item.create({ data: { title } });
