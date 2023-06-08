@@ -1,27 +1,14 @@
-import { prisma } from "@/db";
-import Item from "./Item";
 import { redirect } from "next/dist/server/api-utils";
+import { revalidatePath } from "next/cache";
+import { deleteItem, getList, toggleComplete } from "@/utils";
+import Pair from "./Pair";
 
-async function getList() {
-  "use server";
-  return await prisma.item.findMany();
-}
-
-async function toggleComplete(id: string, checked: boolean) {
-  "use server";
-  await prisma.item.update({ where: { id }, data: { complete: checked } });
-}
-
-async function deleteItem(id: string) {
-  "use server";
-  await prisma.item.delete({ where: { id } });
-}
-
-const ShoppingList = () => {
+const ShoppingList = async () => {
   const list: Promise<Item[]> = getList();
+  const listData = await list;
 
   return (
-    <ul>
+    /* <ul>
       {list.then((data) =>
         data.map((item) => (
           <Item
@@ -32,6 +19,28 @@ const ShoppingList = () => {
           />
         ))
       )}
+    </ul> */
+    <ul>
+      {listData.map((item) => (
+        <form>
+          <li
+            className={" flex gap-1 pb-1 items-center justify-between "}
+            key={item.id}
+          >
+            <Pair {...item} handleCheck={toggleComplete} />
+            <button
+              className="text-sm btn-or-link mb-0.5"
+              formAction={async () => {
+                "use server";
+                await deleteItem(item.id);
+                revalidatePath("/");
+              }}
+            >
+              Delete
+            </button>
+          </li>
+        </form>
+      ))}
     </ul>
   );
 };
