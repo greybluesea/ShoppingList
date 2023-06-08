@@ -1,6 +1,5 @@
 import { prisma } from "@/db";
 import { redirect } from "next/navigation";
-import Link from "next/link";
 
 async function addNew(data: FormData) {
   "use server";

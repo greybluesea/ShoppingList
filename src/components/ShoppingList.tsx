@@ -1,7 +1,4 @@
-import { redirect } from "next/dist/server/api-utils";
-import { revalidatePath } from "next/cache";
-import { deleteItem, getList, revalid, toggleComplete } from "@/utils";
-import Pair from "./Pair";
+import { deleteItem, getList, toggleComplete } from "@/utils";
 import Item from "./Item";
 
 const ShoppingList = async () => {
@@ -10,16 +7,14 @@ const ShoppingList = async () => {
 
   return (
     <ul>
-      {list.then((data) =>
-        data.map((item) => (
-          <Item
-            {...item}
-            key={item.id}
-            handleCheck={toggleComplete}
-            handleDelete={deleteItem}
-          />
-        ))
-      )}
+      {listData.map((item) => (
+        <Item
+          {...item}
+          key={item.id}
+          handleCheck={toggleComplete}
+          handleDelete={deleteItem}
+        />
+      ))}
     </ul>
     /* <ul>
       {listData.map((item) => (

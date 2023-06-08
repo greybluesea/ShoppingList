@@ -15,6 +15,7 @@ export async function deleteItem(id: string) {
   await prisma.item.delete({ where: { id } });
 }
 
-export async function revalid(path: string) {
+/* export async function revalid(path: string) {
   await revalidatePath(path);
 }
+ */
