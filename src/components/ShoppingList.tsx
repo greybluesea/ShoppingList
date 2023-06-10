@@ -5,6 +5,10 @@ const ShoppingList = async () => {
   const list: Promise<Item[]> = getList();
   const listData = await list;
 
+  if (!listData || listData.length === 0) {
+    return;
+  }
+
   return (
     <ul>
       {listData.map((item) => (
